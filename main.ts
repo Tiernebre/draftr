@@ -1,14 +1,6 @@
-import { type Route, route } from "@std/http/unstable-route";
+import { route } from "@std/http/unstable-route";
 import { STATUS_CODE } from "@std/http";
-import { serveDir } from "@std/http/file-server";
-
-const routes: Route[] = [{
-  pattern: new URLPattern({ pathname: "/*" }),
-  handler: (req) =>
-    serveDir(req, {
-      fsRoot: ".",
-    }),
-}];
+import { routes } from "./src/routes/mod.ts";
 
 Deno.serve(
   route(
