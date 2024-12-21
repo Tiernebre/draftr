@@ -11,7 +11,7 @@ export const routes: Route[] = [
         body: `<h1>
           Home</h1>
           <p>
-            <a href="/drafts">Drafts</a>
+            <a href="/drafts/">Drafts</a>
           </p>
         `,
         head: `<link rel="stylesheet" href="./index.css">`,
