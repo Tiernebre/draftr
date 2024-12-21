@@ -1,13 +1,12 @@
 import { html } from "./html.ts";
 
-type LayoutParameters = {
+export const page = ({ head, body, title }: {
   body: string;
   head: string;
   title: string;
-};
-
-export const layout = ({ head, body, title }: LayoutParameters) =>
-  html`
+}) =>
+  new Response(
+    html`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +20,10 @@ export const layout = ({ head, body, title }: LayoutParameters) =>
 ${body}
 </body>
 </html>
-`;
-
-export const page = (parameters: LayoutParameters) =>
-  new Response(layout(parameters), {
-    headers: {
-      "Content-Type": "text/html",
+    `,
+    {
+      headers: {
+        "Content-Type": "text/html",
+      },
     },
-  });
+  );
