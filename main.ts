@@ -1,6 +1,11 @@
-import { route, type Route } from '@std/http/unstable-route'
-import { STATUS_CODE } from '@std/http'
+import { type Route, route } from "@std/http/unstable-route";
+import { STATUS_CODE } from "@std/http";
 
-const routes: Route[] = []
+const routes: Route[] = [];
 
-Deno.serve(route(routes, () => new Response('Not Found', { status: STATUS_CODE.NotFound})))
+Deno.serve(
+  route(
+    routes,
+    () => new Response("Not Found", { status: STATUS_CODE.NotFound }),
+  ),
+);
