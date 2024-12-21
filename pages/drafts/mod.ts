@@ -13,7 +13,7 @@ export const routes: Route[] = [
             <a href="/">Home</a>
         </p>
         `,
-        head: `<link rel="stylesheet" href="./index.css">`,
+        head: `<link rel="stylesheet" href="/drafts/index.css">`,
         title: "Draftr | Drafts",
       }),
   },
