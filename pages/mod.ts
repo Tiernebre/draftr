@@ -1,6 +1,6 @@
 import { Route } from "@std/http/unstable-route";
 import { serveDir } from "@std/http/file-server";
-import { page } from "./layout.ts";
+import { page } from "./page.ts";
 import { routes as draftRoutes } from "./drafts/mod.ts";
 
 export const routes: Route[] = [
