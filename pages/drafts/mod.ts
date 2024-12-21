@@ -4,7 +4,7 @@ import { page } from "../layout.ts";
 
 export const routes: Route[] = [
   {
-    pattern: new URLPattern({ pathname: "/drafts" }),
+    pattern: new URLPattern({ pathname: "/drafts/" }),
     handler: () =>
       page({
         body: `
@@ -13,7 +13,7 @@ export const routes: Route[] = [
             <a href="/">Home</a>
         </p>
         `,
-        head: `<link rel="stylesheet" href="/drafts/index.css">`,
+        head: `<link rel="stylesheet" href="./index.css">`,
         title: "Draftr | Drafts",
       }),
   },
