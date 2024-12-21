@@ -12,3 +12,10 @@ export const html = (content: string) => `
 ${content}
 </body>
 </html>`;
+
+export const page = (content: string) =>
+  new Response(html(content), {
+    headers: {
+      "Content-Type": "text/html",
+    },
+  });
