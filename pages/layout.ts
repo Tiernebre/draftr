@@ -1,10 +1,13 @@
+import { html } from "./html.ts";
+
 type LayoutParameters = {
   body: string;
   head: string;
   title: string;
 };
 
-export const layout = ({ head, body, title }: LayoutParameters) => `
+export const layout = ({ head, body, title }: LayoutParameters) =>
+  html`
 <!DOCTYPE html>
 <html lang="en">
 <head>
