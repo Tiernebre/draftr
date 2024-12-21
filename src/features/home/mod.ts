@@ -1,5 +1,5 @@
 import { Route } from "@std/http/unstable-route";
-import { page } from "../../html/mod.ts";
+import { page } from "../../html.ts";
 
 export const routes: Route[] = [
   {

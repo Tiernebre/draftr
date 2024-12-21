@@ -1,6 +1,6 @@
 import { route } from "@std/http/unstable-route";
 import { STATUS_CODE } from "@std/http";
-import { routes } from "./src/routes/mod.ts";
+import { routes } from "./src/routes.ts";
 
 Deno.serve(
   route(
