@@ -2,9 +2,11 @@ import { Route } from "@std/http/unstable-route";
 import { serveDir } from "@std/http/file-server";
 import { page } from "../layout.ts";
 
+const pathname = "/drafts/";
+
 export const routes: Route[] = [
   {
-    pattern: new URLPattern({ pathname: "/drafts/" }),
+    pattern: new URLPattern({ pathname }),
     handler: () =>
       page({
         body: `
@@ -18,7 +20,7 @@ export const routes: Route[] = [
       }),
   },
   {
-    pattern: new URLPattern({ pathname: "/drafts/*.css" }),
+    pattern: new URLPattern({ pathname }),
     handler: (req) =>
       serveDir(req, {
         fsRoot: import.meta.dirname,
