@@ -1,0 +1,15 @@
+{
+	"name": "Deno",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "dev",
+	"workspaceFolder": "/workspace",
+	"shutdownAction": "stopCompose",
+	"postStartCommand": "dbmate wait && dbmate up",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"justjavac.vscode-deno-extensionpack"
+			]
+		}
+	}
+}

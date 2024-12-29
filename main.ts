@@ -1,8 +1,14 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
+import { route } from "@std/http/unstable-route";
+import { STATUS_CODE } from "@std/http";
+import { routes } from "./pages/mod.ts";
+import { sql } from "./lib/mod.ts";
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
-}
+const [result] = await sql`SELECT 1`;
+console.log({ result });
+
+Deno.serve(
+  route(
+    routes,
+    () => new Response("Not Found", { status: STATUS_CODE.NotFound }),
+  ),
+);
