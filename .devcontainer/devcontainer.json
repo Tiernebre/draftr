@@ -4,11 +4,12 @@
 	"service": "dev",
 	"workspaceFolder": "/workspace",
 	"shutdownAction": "stopCompose",
-	"postStartCommand": "dbmate wait && dbmate up",
+	"postStartCommand": "dbmate wait && dbmate up && deno cache main.ts",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"justjavac.vscode-deno-extensionpack"
+				"justjavac.vscode-deno-extensionpack",
+				"Tobermory.es6-string-html"
 			]
 		}
 	}
