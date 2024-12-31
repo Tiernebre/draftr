@@ -14,12 +14,12 @@ export const routes: Route[] = [
             <a href="/drafts/">Drafts</a>
           </p>
         `,
-        head: `<link rel="stylesheet" href="./index.css">`,
+        head: /* html */ `<link rel="stylesheet" href="./index.css">`,
         title: "Draftr",
       }),
   },
   {
-    pattern: new URLPattern({ pathname: "/*.css" }),
+    pattern: new URLPattern({ pathname: "*.css" }),
     handler: (req) =>
       serveDir(req, {
         fsRoot: import.meta.dirname,
