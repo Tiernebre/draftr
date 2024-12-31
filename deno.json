@@ -1,7 +1,8 @@
 {
   "tasks": {
     "dev": "deno run --watch -A main.ts",
-    "test": "deno test -A && deno check main.ts"
+    "test": "deno test -A && deno check main.ts",
+    "generate:db": "deno run -A --node-modules-dir npm:kanel -d \"$DATABASE_URL\" -o ./types/db"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
