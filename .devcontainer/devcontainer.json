@@ -4,7 +4,7 @@
 	"service": "dev",
 	"workspaceFolder": "/workspace",
 	"shutdownAction": "stopCompose",
-	"postStartCommand": "dbmate wait && dbmate up && deno cache main.ts",
+	"postStartCommand": "deno task migrate && deno cache main.ts",
 	"customizations": {
 		"vscode": {
 			"extensions": [
