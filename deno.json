@@ -1,7 +1,7 @@
 {
   "tasks": {
     "dev": "deno run --watch -A main.ts",
-    "generate:db": "deno run -A --node-modules-dir npm:kanel -d \"$DATABASE_URL\" -o ./types/db",
+    "generate:db": "rm -fr ./types/db && deno run -A --node-modules-dir npm:kanel -d \"$DATABASE_URL\" -o ./types/db",
     "migrate": "dbmate wait && dbmate up && deno task generate:db",
     "test": "deno test -A && deno check main.ts"
   },
