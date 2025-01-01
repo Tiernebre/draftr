@@ -5,7 +5,7 @@
 	"workspaceFolder": "/workspace",
 	"shutdownAction": "stopCompose",
 	"initializeCommand": ".devcontainer/initialize.sh",
-	"postStartCommand": "deno task migrate && deno task dev",
+	"postStartCommand": ".devcontainer/postStart.sh",
 	"features": {
 		"ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {}
 	},
