@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -n "$CI" ]; then
+    return 0
+    exit 0
+fi
+
 echo "Initializing dev container. Be aware you WILL need to provide sudo access in order for HTTPS to work correctly!"
 
 # insert/update hosts entry
