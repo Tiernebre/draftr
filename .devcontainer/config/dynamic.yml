@@ -1,4 +1,0 @@
-tls:
-  certificates:
-    - certFile: "/etc/certs/draftr.localhost.pem"
-      keyFile: "/etc/certs/draftr.localhost-key.pem"
