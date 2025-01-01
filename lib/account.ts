@@ -1,9 +1,21 @@
 import Account from "../types/db/public/Account.ts";
-import { InsertAccountRequest } from "../types/dto/account.ts";
+import Person from "../types/db/public/Person.ts";
+import {
+  CreateAccountRequest,
+  InsertAccountRequest,
+} from "../types/dto/account.ts";
 import { getFirstElementOrThrow } from "./array.ts";
+import { insertPerson } from "./person.ts";
 import { sql } from "./sql.ts";
 
-export const insertAccount = (
+export const createAccount = (request: CreateAccountRequest) =>
+  insertPerson().then(insertAccountForPerson(request));
+
+const insertAccountForPerson =
+  (request: CreateAccountRequest) => ({ id: personId }: Person) =>
+    insertAccount({ ...request, personId });
+
+const insertAccount = (
   { username, password, personId }: InsertAccountRequest,
 ) =>
   sql<
