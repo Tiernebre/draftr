@@ -1,21 +1,21 @@
 {
-	"name": "Deno",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "dev",
-	"workspaceFolder": "/workspace",
-	"shutdownAction": "stopCompose",
-	"initializeCommand": ".devcontainer/initialize.sh",
-	"postStartCommand": ".devcontainer/postStart.sh",
-	"features": {
-		"ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"justjavac.vscode-deno-extensionpack",
-				"Tobermory.es6-string-html"
-			]
-		}
-	},
-	"forwardPorts": []
+  "name": "Deno",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "dev",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "initializeCommand": ".devcontainer/initialize.sh",
+  "postStartCommand": ".devcontainer/postStart.sh",
+  "features": {
+    "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "justjavac.vscode-deno-extensionpack",
+        "Tobermory.es6-string-html"
+      ]
+    }
+  },
+  "forwardPorts": []
 }

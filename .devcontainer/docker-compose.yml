@@ -32,4 +32,3 @@ services:
       - ./config/static.yml:/etc/traefik/traefik.yml:ro
       - ./config/dynamic.yml:/etc/traefik/dynamic.yml:ro
       - "./certs:/etc/certs:ro"
-    
