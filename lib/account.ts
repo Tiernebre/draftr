@@ -1,11 +1,13 @@
 import Account from "../types/db/public/Account.ts";
-import { CreateAccountRequest } from "../types/dto/account.ts";
+import { InsertAccountRequest } from "../types/dto/account.ts";
 import { sql } from "./sql.ts";
 
-export const insertAccount = ({ username, password }: CreateAccountRequest) =>
+export const insertAccount = (
+  { username, password, personId }: InsertAccountRequest,
+) =>
   sql<
     Account[]
-  >`INSERT INTO account (username, password) VALUES (${username}, ${password}) RETURNING *`
+  >`INSERT INTO account (username, password, person_id) VALUES (${username}, ${password}, ${personId}) RETURNING *`
     .then((accounts) => accounts[0])
     .then((account) => {
       if (account) return account;
