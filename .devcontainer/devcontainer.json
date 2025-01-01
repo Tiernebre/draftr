@@ -4,7 +4,8 @@
 	"service": "dev",
 	"workspaceFolder": "/workspace",
 	"shutdownAction": "stopCompose",
-	"postStartCommand": "deno task migrate && deno cache main.ts",
+	"initializeCommand": ".devcontainer/initialize.sh",
+	"postStartCommand": "deno task migrate && deno task dev",
 	"features": {
 		"ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {}
 	},
