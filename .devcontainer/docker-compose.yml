@@ -12,8 +12,8 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.draftr.rule=Host(`draftr.localhost`)"
-      - "traefik.http.routers.draftr.entrypoints=http"
+      - "traefik.http.routers.whoami.rule=Host(`draftr.localhost`)"
+      - "traefik.http.routers.whoami.tls=true"
 
   database:
     image: postgres:17
@@ -23,8 +23,6 @@ services:
 
   proxy:
     image: traefik:v3.2
-    command:
-      - "--entryPoints.web.address=:443"
     ports:
       - "443:443"
       - "8080:8080"
