@@ -2,6 +2,7 @@ import { Route } from "@std/http/unstable-route";
 import { serveDir } from "@std/http/file-server";
 import { page } from "./page.ts";
 import { routes as draftRoutes } from "./drafts/mod.ts";
+import { routes as accountRoutes } from "./accounts/mod.ts";
 
 export const routes: Route[] = [
   {
@@ -26,4 +27,5 @@ export const routes: Route[] = [
       }),
   },
   ...draftRoutes,
+  ...accountRoutes,
 ];
