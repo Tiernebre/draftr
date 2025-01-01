@@ -2,6 +2,8 @@ import { Route } from "@std/http/unstable-route";
 import { page } from "../page.ts";
 import { METHOD } from "@std/http/unstable-method";
 import { createAccountRequestSchema } from "../../types/dto/account.ts";
+import { formRequestToJson } from "../../lib/request.ts";
+import { createAccount } from "../../lib/account.ts";
 
 const pathname = "/accounts/";
 const pattern = new URLPattern({ pathname });
@@ -29,10 +31,11 @@ export const routes: Route[] = [
   {
     pattern,
     method: METHOD.Post,
-    handler: async (request) => {
-      const parsed = createAccountRequestSchema.parse(await request.formData());
-      console.log({ parsed });
-      return new Response("hi");
-    },
+    handler: (request) =>
+      formRequestToJson(request).then(createAccountRequestSchema.parse).then(
+        createAccount,
+      ).then((account) =>
+        new Response(`Account Created. ${JSON.stringify(account)}`)
+      ),
   },
 ];
