@@ -1,8 +1,8 @@
 import { getCookies } from "@std/http";
-import { selectSession } from "../lib/session.ts";
-import Session from "../types/db/public/Session.ts";
-import { Optional } from "../lib/optional.ts";
 import { Handler } from "@std/http/unstable-route";
+import { Optional } from "../../lib/optional.ts";
+import { selectSession } from "../../lib/session.ts";
+import Session from "../../types/db/public/Session.ts";
 
 export const SESSION_COOKIE_NAME = "session";
 

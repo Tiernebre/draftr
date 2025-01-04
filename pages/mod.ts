@@ -1,9 +1,9 @@
 import { Route } from "@std/http/unstable-route";
 import { serveDir } from "@std/http/file-server";
-import { page } from "./page.ts";
+import { page } from "./lib/page.ts";
 import { routes as draftRoutes } from "./drafts/mod.ts";
 import { routes as accountRoutes } from "./accounts/mod.ts";
-import { withSessionHandler } from "./session.ts";
+import { withSessionHandler } from "./lib/session.ts";
 
 export const routes: Route[] = [
   {

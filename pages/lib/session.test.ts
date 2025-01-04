@@ -5,9 +5,9 @@ import {
   withSessionHandler,
 } from "./session.ts";
 import { randomUUID } from "node:crypto";
-import { createAccount } from "../lib/account.ts";
-import { insertSession } from "../lib/session.ts";
-import { sql } from "../lib/sql.ts";
+import { createAccount } from "../../lib/account.ts";
+import { sql } from "../../lib/sql.ts";
+import { insertSession } from "../../lib/session.ts";
 
 Deno.test("returns properly for a sessionless request", async () => {
   const request = new Request("http://0.0.0.0");

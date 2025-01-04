@@ -1,5 +1,5 @@
 import { Route } from "@std/http/unstable-route";
-import { page } from "../page.ts";
+import { page } from "../lib/page.ts";
 
 const pathname = "/drafts/";
 

@@ -1,6 +1,6 @@
 import { assertEquals } from "@std/assert";
-import { formRequestToJson } from "./request.ts";
 import { METHOD } from "@std/http/unstable-method";
+import { formRequestToJson } from "./request.ts";
 
 Deno.test("converts a form request data to json", async () => {
   const formData = new FormData();

@@ -1,8 +1,8 @@
 import { Route } from "@std/http/unstable-route";
-import { page } from "../page.ts";
+import { page } from "../lib/page.ts";
 import { METHOD } from "@std/http/unstable-method";
 import { createAccountRequestSchema } from "../../types/dto/account.ts";
-import { formRequestToJson } from "../../lib/request.ts";
+import { formRequestToJson } from "../lib/request.ts";
 import { createAccount } from "../../lib/account.ts";
 import { accountForm } from "./templates.ts";
 import { insertSession } from "../../lib/session.ts";
