@@ -11,7 +11,7 @@ export const getSession = async (request: Request) => {
   if (sessionId) return await selectSession(sessionId);
 };
 
-export const withSession = (
+export const withSessionHandler = (
   callback: (
     request: Request,
     session?: Optional<Session>,

@@ -1,5 +1,9 @@
 import { assert, assertEquals, assertFalse } from "@std/assert";
-import { getSession, SESSION_COOKIE_NAME, withSession } from "./session.ts";
+import {
+  getSession,
+  SESSION_COOKIE_NAME,
+  withSessionHandler,
+} from "./session.ts";
 import { randomUUID } from "node:crypto";
 import { createAccount } from "../lib/account.ts";
 import { insertSession } from "../lib/session.ts";
@@ -37,7 +41,7 @@ Deno.test("can extend a session onto a route handler", async () => {
       "Cookie": `${SESSION_COOKIE_NAME}=${session.id}`,
     },
   });
-  const response = await withSession((_req, session) =>
+  const response = await withSessionHandler((_req, session) =>
     new Response(JSON.stringify(session))
   )(
     request,
@@ -48,7 +52,7 @@ Deno.test("can extend a session onto a route handler", async () => {
 
 Deno.test("can extend lack of a session onto a route handler", async () => {
   const request = new Request("http://0.0.0.0");
-  const response = await withSession((_req, session) =>
+  const response = await withSessionHandler((_req, session) =>
     new Response(JSON.stringify(session))
   )(
     request,

@@ -3,12 +3,12 @@ import { serveDir } from "@std/http/file-server";
 import { page } from "./page.ts";
 import { routes as draftRoutes } from "./drafts/mod.ts";
 import { routes as accountRoutes } from "./accounts/mod.ts";
-import { withSession } from "./session.ts";
+import { withSessionHandler } from "./session.ts";
 
 export const routes: Route[] = [
   {
     pattern: new URLPattern({ pathname: "/" }),
-    handler: withSession((_request, session) =>
+    handler: withSessionHandler((_request, session) =>
       page({
         body: /* html */ `<h1>
           Home</h1>
