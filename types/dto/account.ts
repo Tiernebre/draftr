@@ -11,4 +11,5 @@ export const insertAccountRequestSchema = z.object({
 }).merge(createAccountRequestSchema);
 
 export type CreateAccountRequest = z.infer<typeof createAccountRequestSchema>;
+export type GetAccountRequest = z.infer<typeof createAccountRequestSchema>;
 export type InsertAccountRequest = z.infer<typeof insertAccountRequestSchema>;
