@@ -6,7 +6,7 @@ import { formRequestToJson } from "../../lib/request.ts";
 import { createAccount } from "../../lib/account.ts";
 import { accountForm } from "./templates.ts";
 import { insertSession } from "../../lib/session.ts";
-import { Cookie, setCookie } from "@std/http/cookie";
+import { setCookie } from "@std/http/cookie";
 import { STATUS_CODE } from "@std/http";
 import { HEADER } from "@std/http/unstable-header";
 

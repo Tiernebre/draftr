@@ -12,6 +12,7 @@ Deno.test("inserts a session", async () => {
   });
   const session = await insertSession(person_id);
   assert(session.id);
+  assert(session.created_at);
   assertEquals(session.person_id, person_id);
   await sql.end();
 });
