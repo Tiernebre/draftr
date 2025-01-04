@@ -7,3 +7,9 @@ export const insertSession = (personId: string) =>
     Session[]
   >`INSERT INTO session (person_id) VALUES (${personId}) RETURNING *`
     .then(getFirstElementOrThrow(new Error("Could not insert session.")));
+
+export const selectSession = (id: string) =>
+  sql<
+    Session[]
+  >`SELECT * FROM session WHERE id = ${id}`
+    .then(getFirstElementOrThrow(new Error("Could not insert session.")));
