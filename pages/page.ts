@@ -1,6 +1,6 @@
 export const page = ({ head, body, title }: {
   body: string;
-  head: string;
+  head?: string;
   title: string;
 }) =>
   new Response(
@@ -11,7 +11,7 @@ export const page = ({ head, body, title }: {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>${title}</title>
-  ${head}
+  ${head || ""}
 </head>
 
 <body>

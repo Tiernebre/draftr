@@ -4,6 +4,7 @@ import { METHOD } from "@std/http/unstable-method";
 import { createAccountRequestSchema } from "../../types/dto/account.ts";
 import { formRequestToJson } from "../../lib/request.ts";
 import { createAccount } from "../../lib/account.ts";
+import { accountForm } from "./templates.ts";
 
 const pathname = "/accounts/";
 const pattern = new URLPattern({ pathname });
@@ -14,17 +15,7 @@ export const routes: Route[] = [
     method: METHOD.Get,
     handler: () =>
       page({
-        body: /* html */ `
-        <h1>Accounts</h1>
-        <form method="POST" action=".">
-          <label for="username">Username</label>
-          <input id="username" name="username" type="text" required>
-          <label for="password">Password</label>
-          <input id="password" name="password" type="password" required>
-          <button>Create Account</button>
-        </form>
-        `,
-        head: /* html */ ``,
+        body: accountForm(),
         title: "Draftr | Create Account",
       }),
   },
