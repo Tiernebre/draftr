@@ -49,7 +49,9 @@ const verifyAccountPassword =
 const hashCreationRequest = (
   request: CreateAccountRequest,
 ): Promise<CreateAccountRequest> =>
-  Promise.resolve(request.password).then(Argon2id.hash).then((password) => ({
+  Promise.resolve(request.password).then(Argon2id.hashEncoded).then((
+    password,
+  ) => ({
     ...request,
     password,
   }));

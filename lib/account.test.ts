@@ -5,6 +5,7 @@ import { randomUUID } from "node:crypto";
 import { assert, assertNotEquals } from "@std/assert";
 import { createAccount, getAccount } from "./account.ts";
 import { afterAll, describe, it } from "@std/testing/bdd";
+import Argon2id from "@rabbit-company/argon2id";
 
 describe("account", () => {
   afterAll(async () => {
@@ -22,6 +23,7 @@ describe("account", () => {
     assertEquals(account.username, request.username);
     assert(account.password);
     assertNotEquals(account.password, request.password);
+    assert(Argon2id.hashDecode(account.password));
   });
 
   it("gets an account", async () => {
@@ -30,8 +32,8 @@ describe("account", () => {
       password: "password",
     };
     const account = await createAccount(request);
-    console.log({ account });
     const gottenAccount = await getAccount(request);
     assertEquals(account, gottenAccount);
+    assert(Argon2id.hashDecode(gottenAccount.password));
   });
 });
