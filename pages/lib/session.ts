@@ -1,8 +1,10 @@
-import { getCookies, setCookie } from "@std/http";
+import { getCookies, setCookie, STATUS_CODE } from "@std/http";
 import { Handler } from "@std/http/unstable-route";
 import { Optional } from "../../lib/optional.ts";
-import { selectSession } from "../../lib/session.ts";
+import { insertSession, selectSession } from "../../lib/session.ts";
 import Session from "../../types/db/public/Session.ts";
+import Account from "../../types/db/public/Account.ts";
+import { HEADER } from "@std/http/unstable-header";
 
 export const SESSION_COOKIE_NAME = "session";
 
@@ -22,7 +24,12 @@ async (request: Request) => {
   return callback(request, session);
 };
 
-export const setSessionInHeaders = (headers: Headers, session: Session) => {
+export const logInForAccount = (account: Account) =>
+  insertSession(account.person_id)
+    .then((session) => setSessionInHeaders(new Headers(), session))
+    .then(redirectToHome);
+
+const setSessionInHeaders = (headers: Headers, session: Session) => {
   setCookie(headers, {
     name: SESSION_COOKIE_NAME,
     value: session.id,
@@ -32,4 +39,12 @@ export const setSessionInHeaders = (headers: Headers, session: Session) => {
     secure: true,
   });
   return headers;
+};
+
+const redirectToHome = (headers: Headers) => {
+  headers.set(HEADER.Location, "/");
+  return new Response(null, {
+    status: STATUS_CODE.MovedPermanently,
+    headers,
+  });
 };
