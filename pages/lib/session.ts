@@ -1,4 +1,4 @@
-import { getCookies } from "@std/http";
+import { getCookies, setCookie } from "@std/http";
 import { Handler } from "@std/http/unstable-route";
 import { Optional } from "../../lib/optional.ts";
 import { selectSession } from "../../lib/session.ts";
@@ -20,4 +20,16 @@ export const withSessionHandler = (
 async (request: Request) => {
   const session = await getSession(request);
   return callback(request, session);
+};
+
+export const setSessionInHeaders = (headers: Headers, session: Session) => {
+  setCookie(headers, {
+    name: SESSION_COOKIE_NAME,
+    value: session.id,
+    maxAge: 300000,
+    path: "/",
+    sameSite: "Strict",
+    secure: true,
+  });
+  return headers;
 };
