@@ -26,7 +26,7 @@ Deno.test("errors on invalid schema match", async () => {
     method: METHOD.Post,
     body: new URLSearchParams(formData as unknown as Record<string, string>),
   });
-  assertRejects(
+  await assertRejects(
     () => formRequestToSchema(createSessionRequestSchema, request),
     ZodError,
   );
