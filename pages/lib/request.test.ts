@@ -1,4 +1,4 @@
-import { assertEquals, assertRejects, assertThrows } from "@std/assert";
+import { assertEquals, assertRejects } from "@std/assert";
 import { METHOD } from "@std/http/unstable-method";
 import { formRequestToSchema } from "./request.ts";
 import { createSessionRequestSchema } from "../../types/dto/session.ts";
