@@ -2,6 +2,7 @@ import { route } from "@std/http/unstable-route";
 import { afterAll, beforeAll, describe } from "@std/testing/bdd";
 import { routes } from "../pages/mod.ts";
 import { STATUS_CODE } from "@std/http/status";
+import { sql } from "../lib/sql.ts";
 
 export const createWebTestingSuite = (name: string, tests: () => unknown) => {
   return describe(name, () => {
@@ -20,6 +21,19 @@ export const createWebTestingSuite = (name: string, tests: () => unknown) => {
 
     afterAll(async () => {
       await server.shutdown();
+    });
+  });
+};
+
+export const createDatabaseTestingSuite = (
+  name: string,
+  tests: () => unknown,
+) => {
+  return describe(name, () => {
+    tests();
+
+    afterAll(async () => {
+      await sql.end();
     });
   });
 };

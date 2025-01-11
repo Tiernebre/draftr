@@ -6,15 +6,11 @@ import {
 } from "./session.ts";
 import { randomUUID } from "node:crypto";
 import { createAccount } from "../../lib/account.ts";
-import { sql } from "../../lib/sql.ts";
 import { insertSession } from "../../lib/session.ts";
-import { afterAll, describe, it } from "@std/testing/bdd";
+import { it } from "@std/testing/bdd";
+import { createDatabaseTestingSuite } from "../../test/lib.ts";
 
-describe("session", () => {
-  afterAll(async () => {
-    await sql.end();
-  });
-
+createDatabaseTestingSuite("session", () => {
   it("returns properly for a sessionless request", async () => {
     const request = new Request("http://0.0.0.0");
     assertFalse(await getSession(request));

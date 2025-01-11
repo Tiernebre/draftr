@@ -1,17 +1,13 @@
 import { assertEquals } from "@std/assert/equals";
 import { CreateAccountRequest } from "../types/dto/account.ts";
-import { sql } from "./sql.ts";
 import { randomUUID } from "node:crypto";
 import { assert, assertNotEquals } from "@std/assert";
 import { createAccount, getAccount } from "./account.ts";
-import { afterAll, describe, it } from "@std/testing/bdd";
+import { it } from "@std/testing/bdd";
 import Argon2id from "@rabbit-company/argon2id";
+import { createDatabaseTestingSuite } from "../test/lib.ts";
 
-describe("account", () => {
-  afterAll(async () => {
-    await sql.end();
-  });
-
+createDatabaseTestingSuite("account", () => {
   it("creates an account", async () => {
     const request: CreateAccountRequest = {
       username: `username-${randomUUID()}`,

@@ -3,15 +3,11 @@ import { createAccount } from "./account.ts";
 import { insertSession, selectSession } from "./session.ts";
 import { assert } from "@std/assert/assert";
 import { assertEquals } from "@std/assert/equals";
-import { sql } from "./sql.ts";
 import { assertFalse } from "@std/assert";
-import { afterAll, describe, it } from "@std/testing/bdd";
+import { it } from "@std/testing/bdd";
+import { createDatabaseTestingSuite } from "../test/lib.ts";
 
-describe("session", () => {
-  afterAll(async () => {
-    await sql.end();
-  });
-
+createDatabaseTestingSuite("session", () => {
   it("inserts a session", async () => {
     const { person_id } = await createAccount({
       username: `username-${randomUUID()}`,
