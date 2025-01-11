@@ -1,7 +1,10 @@
 import { DOMParser } from "@b-fuze/deno-dom";
-import { assert } from "@std/assert";
+import { assert, assertEquals } from "@std/assert";
 import { it } from "@std/testing/bdd";
 import { createWebTestingSuite } from "../../test/lib.ts";
+import { METHOD } from "@std/http/unstable-method";
+import { randomUUID } from "node:crypto";
+import { STATUS_CODE } from "@std/http/status";
 
 createWebTestingSuite("accounts page", () => {
   it("renders the form on GET", async () => {
@@ -9,5 +12,19 @@ createWebTestingSuite("accounts page", () => {
     const html = await response.text();
     const doc = new DOMParser().parseFromString(html, "text/html");
     assert(doc.querySelector("form"));
+  });
+
+  it("creates an account on POST", async () => {
+    const formData = new FormData();
+    const username = randomUUID();
+    formData.append("username", username);
+    formData.append("password", "password");
+    const response = await fetch("http://localhost:8000/accounts/", {
+      method: METHOD.Post,
+      redirect: "manual",
+      body: new URLSearchParams(formData as unknown as Record<string, string>),
+    });
+    await response.body?.cancel();
+    assertEquals(response.status, STATUS_CODE.MovedPermanently);
   });
 });

@@ -4,8 +4,8 @@ import { routes } from "../pages/mod.ts";
 import { STATUS_CODE } from "@std/http/status";
 import { sql } from "../lib/sql.ts";
 
-export const createWebTestingSuite = (name: string, tests: () => unknown) => {
-  return describe(name, () => {
+export const createWebTestingSuite = (name: string, tests: () => unknown) =>
+  describe(name, () => {
     let server: Deno.HttpServer;
 
     beforeAll(() => {
@@ -20,20 +20,19 @@ export const createWebTestingSuite = (name: string, tests: () => unknown) => {
     tests();
 
     afterAll(async () => {
+      await sql.end();
       await server.shutdown();
     });
   });
-};
 
 export const createDatabaseTestingSuite = (
   name: string,
   tests: () => unknown,
-) => {
-  return describe(name, () => {
+) =>
+  describe(name, () => {
     tests();
 
     afterAll(async () => {
       await sql.end();
     });
   });
-};
