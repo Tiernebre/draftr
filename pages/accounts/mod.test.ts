@@ -35,5 +35,7 @@ createWebTestingSuite("accounts page", () => {
     );
     assert(sessionCookie);
     assert(sessionCookie.value);
+    assert(sessionCookie.secure);
+    assertEquals(sessionCookie.sameSite, "Strict");
   });
 });
