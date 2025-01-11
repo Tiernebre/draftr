@@ -5,6 +5,8 @@ import { createWebTestingSuite } from "../../test/lib.ts";
 import { METHOD } from "@std/http/unstable-method";
 import { randomUUID } from "node:crypto";
 import { STATUS_CODE } from "@std/http/status";
+import { getSetCookies } from "@std/http";
+import { SESSION_COOKIE_NAME } from "../lib/session.ts";
 
 createWebTestingSuite("accounts page", () => {
   it("renders the form on GET", async () => {
@@ -14,7 +16,7 @@ createWebTestingSuite("accounts page", () => {
     assert(doc.querySelector("form"));
   });
 
-  it("creates an account on POST", async () => {
+  it("creates an account and logs in on POST", async () => {
     const formData = new FormData();
     const username = randomUUID();
     formData.append("username", username);
@@ -26,5 +28,12 @@ createWebTestingSuite("accounts page", () => {
     });
     await response.body?.cancel();
     assertEquals(response.status, STATUS_CODE.MovedPermanently);
+    const headers = response.headers;
+    assertEquals(headers.get("location"), "/");
+    const sessionCookie = getSetCookies(headers).find((cookie) =>
+      cookie.name === SESSION_COOKIE_NAME
+    );
+    assert(sessionCookie);
+    assert(sessionCookie.value);
   });
 });
