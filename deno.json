@@ -2,9 +2,11 @@
   "tasks": {
     "dev": "deno run --watch -A main.ts",
     "migrate": "dbmate wait && dbmate up && deno run -A bin/kanel.ts",
-    "test": "deno test -A && deno check main.ts"
+    "test": "deno test -A && deno check main.ts",
+    "test:debug": "deno test -A --inspect-brk"
   },
   "imports": {
+    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.49",
     "@rabbit-company/argon2id": "jsr:@rabbit-company/argon2id@^2.1.0",
     "@std/assert": "jsr:@std/assert@1",
     "@std/html": "jsr:@std/html@^1.0.3",

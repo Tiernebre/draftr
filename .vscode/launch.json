@@ -19,6 +19,22 @@
         "--allow-all"
       ],
       "attachSimplePort": 9229
-    }
+    },
+    {
+      "request": "launch",
+      "name": "Debug Tests",
+      "type": "node",
+      "program": "${relativeFile}",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "runtimeExecutable": "/usr/local/bin/deno",
+      "runtimeArgs": [
+        "test",
+        "--unstable",
+        "--inspect-wait",
+        "--allow-all",
+      ],
+      "attachSimplePort": 9229
+    },
   ]
 }
