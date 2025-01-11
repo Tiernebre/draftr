@@ -27,6 +27,7 @@
     "jsr:@std/streams@^1.0.8": "1.0.8",
     "jsr:@std/testing@^1.0.8": "1.0.8",
     "npm:@types/node@*": "22.5.4",
+    "npm:get-port@7.1.0": "7.1.0",
     "npm:kanel@*": "3.11.0",
     "npm:kanel@^3.11.0": "3.11.0"
   },
@@ -306,6 +307,9 @@
     },
     "get-package-type@0.1.0": {
       "integrity": "sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q=="
+    },
+    "get-port@7.1.0": {
+      "integrity": "sha512-QB9NKEeDg3xxVwCCwJQ9+xycaz6pBB6iQ76wiWMl1927n0Kir6alPiP+yuiICLLU4jpMe08dXfpebuQppFA2zw=="
     },
     "getopts@2.3.0": {
       "integrity": "sha512-5eDf9fuSXwxBL6q5HX+dhDj+dslFGWzU5thZ9kNKUkcPtaPdatmUFKwHFrLb/uf/WpA4BHET+AX3Scl56cAjpA=="
