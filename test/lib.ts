@@ -1,10 +1,13 @@
-import { route } from "@std/http/unstable-route";
+import { Route, route } from "@std/http/unstable-route";
 import { afterAll, beforeAll, describe } from "@std/testing/bdd";
-import { routes } from "../pages/mod.ts";
 import { STATUS_CODE } from "@std/http/status";
 import { sql } from "../lib/sql.ts";
 
-export const createWebTestingSuite = (name: string, tests: () => unknown) =>
+export const createWebTestingSuite = (
+  name: string,
+  routes: Route[],
+  tests: () => unknown,
+) =>
   describe(name, () => {
     let server: Deno.HttpServer;
 

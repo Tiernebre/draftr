@@ -26,5 +26,6 @@ export const routes: Route[] = [
     handler: (request) =>
       formRequestToSchema(createSessionRequestSchema, request).then(
         getAccount,
-      ).then(logInForAccount)
+      ).then(logInForAccount),
+  },
 ];

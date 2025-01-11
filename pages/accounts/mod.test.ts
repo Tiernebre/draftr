@@ -8,10 +8,13 @@ import { STATUS_CODE } from "@std/http/status";
 import { getSetCookies } from "@std/http";
 import { SESSION_COOKIE_NAME } from "../lib/session.ts";
 import { selectSession } from "../../lib/session.ts";
+import { routes } from "./mod.ts";
 
-createWebTestingSuite("accounts page", () => {
+const PATH = "http://localhost:8000/accounts/";
+
+createWebTestingSuite("accounts page", routes, () => {
   it("renders the form on GET", async () => {
-    const response = await fetch("http://localhost:8000/accounts/");
+    const response = await fetch(PATH);
     const html = await response.text();
     const doc = new DOMParser().parseFromString(html, "text/html");
     assert(doc.querySelector("form"));
@@ -22,7 +25,7 @@ createWebTestingSuite("accounts page", () => {
     const username = randomUUID();
     formData.append("username", username);
     formData.append("password", "password");
-    const response = await fetch("http://localhost:8000/accounts/", {
+    const response = await fetch(PATH, {
       method: METHOD.Post,
       redirect: "manual",
       body: new URLSearchParams(formData as unknown as Record<string, string>),
