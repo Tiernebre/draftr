@@ -7,6 +7,7 @@ import { randomUUID } from "node:crypto";
 import { STATUS_CODE } from "@std/http/status";
 import { getSetCookies } from "@std/http";
 import { SESSION_COOKIE_NAME } from "../lib/session.ts";
+import { selectSession } from "../../lib/session.ts";
 
 createWebTestingSuite("accounts page", () => {
   it("renders the form on GET", async () => {
@@ -37,5 +38,6 @@ createWebTestingSuite("accounts page", () => {
     assert(sessionCookie.value);
     assert(sessionCookie.secure);
     assertEquals(sessionCookie.sameSite, "Strict");
+    assert(await selectSession(sessionCookie.value));
   });
 });
