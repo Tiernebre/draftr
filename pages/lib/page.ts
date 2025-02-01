@@ -15,7 +15,7 @@ export const page = ({ head, body, title, context }: {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>${title}</title>
-  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/styles/common.css">
   ${head || ""}
 </head>
 
@@ -26,6 +26,9 @@ ${navigation({ context })}
 <main>
 ${body}
 </main>
+<footer>
+    <p>&copy; 2025 Draftr</p> 
+</footer>
 </body>
 </html>
     `,

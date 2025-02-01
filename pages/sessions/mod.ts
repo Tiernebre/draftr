@@ -19,6 +19,7 @@ export const routes: Route[] = [
       page({
         body: sessionForm(),
         title: "Draftr | Login",
+        head: /* html */ `<link rel="stylesheet" href="index.css">`,
         context,
       })
     ),

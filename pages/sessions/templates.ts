@@ -1,5 +1,5 @@
 export const sessionForm = () => /*html*/ `
-    <h1>Accounts</h1>
+    <h1>Login</h1>
     <form method="POST" action=".">
       <label for="username">Username</label>
       <input id="username" name="username" type="text" required>
