@@ -1,7 +1,7 @@
 import { assertEquals } from "@std/assert/equals";
 import { CreateAccountRequest } from "../types/dto/account.ts";
 import { randomUUID } from "node:crypto";
-import { assert, assertNotEquals } from "@std/assert";
+import { assert, assertNotEquals, assertRejects } from "@std/assert";
 import { createAccount, getAccount } from "./account.ts";
 import { it } from "@std/testing/bdd";
 import Argon2id from "@rabbit-company/argon2id";
@@ -31,5 +31,29 @@ createDatabaseTestingSuite("account", () => {
     const gottenAccount = await getAccount(request);
     assertEquals(account, gottenAccount);
     assert(Argon2id.hashDecode(gottenAccount.password));
+  });
+
+  it("throws an error when getting a non existent account by username", async () => {
+    const request: CreateAccountRequest = {
+      username: `username-${randomUUID()}`,
+      password: "password",
+    };
+    await assertRejects(
+      () => getAccount(request),
+      "An account does not exist with the provided username or password.",
+    );
+  });
+
+  it("throws an error when an invalid password is used when getting an account", async () => {
+    const request: CreateAccountRequest = {
+      username: `username-${randomUUID()}`,
+      password: "password",
+    };
+    await createAccount(request);
+    request.password = "invalid-password";
+    await assertRejects(
+      () => getAccount(request),
+      "An account does not exist with the provided username or password.",
+    );
   });
 });

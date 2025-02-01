@@ -5,9 +5,13 @@ import {
   InsertAccountRequest,
 } from "../types/dto/account.ts";
 import { getFirstElementOrThrow } from "./array.ts";
+import { ClientError } from "./error.ts";
 import { insertPerson } from "./person.ts";
 import { sql } from "./sql.ts";
 import Argon2id from "@rabbit-company/argon2id";
+
+const NON_EXISTENT_ACCOUNT_ERROR_MESSAGE =
+  "An account does not exist with the provided username or password.";
 
 export const createAccount = (request: CreateAccountRequest) =>
   Promise.all([hashCreationRequest(request), insertPerson()])
@@ -25,7 +29,7 @@ const insertAccount = (
   sql<
     Account[]
   >`INSERT INTO account (username, password, person_id) VALUES (${username}, ${password}, ${personId}) RETURNING *`
-    .then(getFirstElementOrThrow(new Error("Could not create account")));
+    .then(getFirstElementOrThrow(new ClientError("Could not create account")));
 
 const selectAccountByUsername = (username: string) =>
   sql<
@@ -33,7 +37,9 @@ const selectAccountByUsername = (username: string) =>
   >`SELECT * FROM account WHERE username = ${username}`
     .then(
       getFirstElementOrThrow(
-        new Error("Account does not exist with provided username or password."),
+        new ClientError(
+          NON_EXISTENT_ACCOUNT_ERROR_MESSAGE,
+        ),
       ),
     );
 
@@ -41,8 +47,8 @@ const verifyAccountPassword =
   ({ password }: GetAccountRequest) => (account: Account) =>
     Argon2id.verify(account.password, password).then((verified) => {
       if (verified) return account;
-      throw new Error(
-        "Account does not exist with provided username or password.",
+      throw new ClientError(
+        NON_EXISTENT_ACCOUNT_ERROR_MESSAGE,
       );
     });
 

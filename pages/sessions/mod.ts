@@ -7,6 +7,7 @@ import { sessionForm } from "./templates.ts";
 import { logInForAccount, logOut } from "../lib/session.ts";
 import { createSessionRequestSchema } from "../../types/dto/session.ts";
 import { requestHandler } from "../lib/handler.ts";
+import { Context } from "../../types/mod.ts";
 
 const pathname = "/sessions/";
 const pattern = new URLPattern({ pathname });
@@ -15,22 +16,18 @@ export const routes: Route[] = [
   {
     pattern,
     method: METHOD.Get,
-    handler: requestHandler((context) =>
-      page({
-        body: sessionForm(),
-        title: "Draftr | Login",
-        head: /* html */ `<link rel="stylesheet" href="index.css">`,
-        context,
-      })
-    ),
+    handler: requestHandler((context) => createSessionPage({ context })),
   },
   {
     pattern,
     method: METHOD.Post,
-    handler: (request) =>
-      formRequestToSchema(createSessionRequestSchema, request).then(
+    handler: requestHandler((context) =>
+      formRequestToSchema(createSessionRequestSchema, context.request).then(
         getAccount,
-      ).then(logInForAccount),
+      ).then(logInForAccount).catch((error) =>
+        createSessionPage({ context, error })
+      )
+    ),
   },
   {
     pattern: new URLPattern({ pathname: `${pathname}delete/` }),
@@ -38,3 +35,13 @@ export const routes: Route[] = [
     handler: () => logOut(),
   },
 ];
+
+const createSessionPage = (
+  { context, error }: { context: Context; error?: Error },
+) =>
+  page({
+    body: sessionForm({ error }),
+    title: "Draftr | Login",
+    head: /* html */ `<link rel="stylesheet" href="index.css">`,
+    context,
+  });
