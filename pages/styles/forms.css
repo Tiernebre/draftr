@@ -5,7 +5,30 @@ form {
   flex: 1;
 }
 
-form > button {
+form>button {
   margin-top: auto;
   margin-bottom: 0.5em;
+}
+
+main {
+  max-width: var(--desktop-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  form {
+    gap: 1em;
+  }
+
+  input {
+    align-self: flex-start;
+    width: auto;
+  }
+
+  form>button {
+    margin: 0;
+    align-self: flex-start;
+    width: auto;
+  }
 }

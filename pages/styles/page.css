@@ -43,3 +43,7 @@ main {
   display: flex;
   gap: 0.5em;
 }
+
+footer {
+  text-align: center;
+}
