@@ -8,7 +8,7 @@ import { withSessionHandler } from "./lib/session.ts";
 export const routes: Route[] = [
   {
     pattern: new URLPattern({ pathname: "/" }),
-    handler: withSessionHandler((_request, session) =>
+    handler: withSessionHandler(({ session }) =>
       page({
         body: /* html */ `<h1>
           Home</h1>

@@ -42,7 +42,7 @@ createDatabaseTestingSuite("session", () => {
         "Cookie": `${SESSION_COOKIE_NAME}=${session.id}`,
       },
     });
-    const response = await withSessionHandler((_req, session) =>
+    const response = await withSessionHandler(({ session }) =>
       new Response(JSON.stringify(session))
     )(
       request,
@@ -52,7 +52,7 @@ createDatabaseTestingSuite("session", () => {
 
   it("can extend lack of a session onto a route handler", async () => {
     const request = new Request("http://0.0.0.0");
-    const response = await withSessionHandler((_req, session) =>
+    const response = await withSessionHandler(({ session }) =>
       new Response(JSON.stringify(session))
     )(
       request,

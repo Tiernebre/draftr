@@ -1,10 +1,10 @@
 import { getCookies, setCookie, STATUS_CODE } from "@std/http";
 import { Handler } from "@std/http/unstable-route";
-import { Optional } from "../../lib/optional.ts";
 import { insertSession, selectSession } from "../../lib/session.ts";
 import Session from "../../types/db/public/Session.ts";
 import Account from "../../types/db/public/Account.ts";
 import { HEADER } from "@std/http/unstable-header";
+import { Context } from "../../types/mod.ts";
 
 export const SESSION_COOKIE_NAME = "session";
 
@@ -14,14 +14,11 @@ export const getSession = async (request: Request) => {
 };
 
 export const withSessionHandler = (
-  callback: (
-    request: Request,
-    session?: Optional<Session>,
-  ) => Response | Promise<Response>,
+  callback: (context: Context) => Response | Promise<Response>,
 ): Handler =>
 async (request: Request) => {
   const session = await getSession(request);
-  return callback(request, session);
+  return callback({ request, session });
 };
 
 export const logInForAccount = (account: Account) =>
