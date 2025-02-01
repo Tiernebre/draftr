@@ -1,0 +1,31 @@
+:root {
+  --desktop-width: 1024px;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+header {
+  display: flex;
+}
+
+nav {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  max-width: var(--desktop-width);
+}
+
+.home-link {
+  font-size: xx-large;
+  color: black;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  color: hsl(0, 0, 30%);
+  text-decoration: underline;
+}
