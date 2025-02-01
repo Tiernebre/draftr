@@ -3,6 +3,7 @@ import { serveDir } from "@std/http/file-server";
 import { page } from "./lib/page.ts";
 import { routes as draftRoutes } from "./drafts/mod.ts";
 import { routes as accountRoutes } from "./accounts/mod.ts";
+import { routes as sessionRoutes } from "./sessions/mod.ts";
 import { requestHandler } from "./lib/handler.ts";
 
 export const routes: Route[] = [
@@ -31,4 +32,5 @@ export const routes: Route[] = [
   },
   ...draftRoutes,
   ...accountRoutes,
+  ...sessionRoutes,
 ];

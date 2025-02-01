@@ -26,6 +26,20 @@ export const logInForAccount = (account: Account) =>
     .then((session) => setSessionInHeaders(new Headers(), session))
     .then(redirectToHome);
 
+export const logOut = () => {
+  const headers = new Headers();
+  setCookie(headers, {
+    name: SESSION_COOKIE_NAME,
+    value: "",
+    maxAge: 0,
+    expires: new Date(0),
+    path: "/",
+    sameSite: "Strict",
+    secure: true,
+  });
+  return redirectToHome(headers);
+};
+
 const setSessionInHeaders = (headers: Headers, session: Session) => {
   setCookie(headers, {
     name: SESSION_COOKIE_NAME,

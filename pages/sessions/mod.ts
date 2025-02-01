@@ -4,7 +4,7 @@ import { getAccount } from "../../lib/account.ts";
 import { page } from "../lib/page.ts";
 import { formRequestToSchema } from "../lib/request.ts";
 import { sessionForm } from "./templates.ts";
-import { logInForAccount } from "../lib/session.ts";
+import { logInForAccount, logOut } from "../lib/session.ts";
 import { createSessionRequestSchema } from "../../types/dto/session.ts";
 import { requestHandler } from "../lib/handler.ts";
 
@@ -30,5 +30,10 @@ export const routes: Route[] = [
       formRequestToSchema(createSessionRequestSchema, request).then(
         getAccount,
       ).then(logInForAccount),
+  },
+  {
+    pattern: new URLPattern({ pathname: `${pathname}delete/` }),
+    method: METHOD.Post,
+    handler: () => logOut(),
   },
 ];

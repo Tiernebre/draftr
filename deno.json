@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch -A main.ts",
+    "dev": "deno run --inspect --watch -A main.ts",
     "migrate": "dbmate wait && dbmate up && deno run -A bin/kanel.ts",
     "test": "deno test -A && deno check main.ts",
     "test:debug": "deno test -A --inspect-brk"
