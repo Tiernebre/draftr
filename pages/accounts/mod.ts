@@ -18,6 +18,7 @@ export const routes: Route[] = [
     handler: requestHandler((context) =>
       page({
         body: accountForm(),
+        head: /* html */ `<link rel="stylesheet" href="index.css">`,
         title: "Draftr | Create Account",
         context,
       })
