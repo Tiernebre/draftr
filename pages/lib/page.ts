@@ -27,7 +27,7 @@ ${navigation({ context })}
 ${body}
 </main>
 <footer>
-    <p>&copy; 2025 Draftr</p> 
+    <p>&copy; ${new Date().getFullYear()} Draftr</p> 
 </footer>
 </body>
 </html>
