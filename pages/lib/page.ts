@@ -1,7 +1,11 @@
-export const page = ({ head, body, title }: {
+import { Context } from "../../types/mod.ts";
+import { navigation } from "./navigation.ts";
+
+export const page = ({ head, body, title, context }: {
   body: string;
   head?: string;
   title: string;
+  context: Context;
 }) =>
   new Response(
     /* html */ `
@@ -17,10 +21,7 @@ export const page = ({ head, body, title }: {
 
 <body>
 <header>
-  <nav>
-    <a class="home-link" href="/">Draftr</a>
-    <a href="/drafts/">Drafts</a>
-  </nav>
+${navigation({ context })}
 </header>
 <main>
 ${body}
